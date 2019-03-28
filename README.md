@@ -1,2 +1,2 @@
 # manager
-React-native based manager app
+React-native based manager App.
