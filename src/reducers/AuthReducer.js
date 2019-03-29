@@ -1,22 +1,33 @@
 //reducer for handling email and password authentication
 //initial state for work with app
 import { EMAIL_CHANGED,
-     PASSWORD_CHANGED
+     PASSWORD_CHANGED,
+     LOGIN_USER_SUCCESS,
+     LOGIN_USER_FAIL
 } from '../actions/types';
+
 
 const INITIAL_STATE =
  { email: '',
-  password : ''
+  password : '',
+  user: null,
+  error : ''
 };
 
 
 //returning new state object that components can render again
 export default (state = INITIAL_STATE, action) => {
+    console.log(action);
+
     switch(action.type) {
         case EMAIL_CHANGED:
-            return {...state, email:action.payload };
+            return {...state, email: action.payload };
         case PASSWORD_CHANGED:
-            return {...state, password:action.payload }; 
+            return {...state, password: action.payload }; 
+        case LOGIN_USER_SUCCESS:
+            return { ...state, user: action.payload};
+        case LOGIN_USER_FAIL:
+            return { ...state, error: 'Authentication failed.'};
         default:
             return state;
     }
